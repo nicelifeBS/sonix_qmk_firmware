@@ -142,6 +142,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+
+
 bool dip_switch_update_user(uint8_t index, bool active){
     switch(index){
         case 0: // macos/windows togggle
@@ -156,13 +158,63 @@ bool dip_switch_update_user(uint8_t index, bool active){
     return true;
 }
 
+// Custom RGB layers
+// https://docs.qmk.fm/#/feature_rgb_matrix?id=indicators
+
+// Custom RGB colors for activated layers
+#ifdef RGB_MATRIX_ENABLE
+void rgb_matrix_indicators_user(void) {
+
+    // FN2 Layer
+    if (layer_state_is(FN2)) {
+        // Reset LEDs
+        rgb_matrix_set_color_all(0, 0, 0);
+
+        for(uint8_t i = 0; i < 12+1; ++i) {
+            rgb_matrix_set_color(i, RGB_RED);
+        }
+        for(uint8_t i = 16; i < 16+4+1; ++i) {
+            rgb_matrix_set_color(i, RGB_RED);
+        }
+        rgb_matrix_set_color(13, RGB_TEAL);
+        rgb_matrix_set_color(14, RGB_TEAL);
+        rgb_matrix_set_color(29, RGB_RED);
+        rgb_matrix_set_color(43, RGB_RED);
+        rgb_matrix_set_color(56, RGB_RED);
+        rgb_matrix_set_color(57, RGB_RED);
+        rgb_matrix_set_color(65, RGB_RED);
+        rgb_matrix_set_color(66, RGB_RED);
+        rgb_matrix_set_color(67, RGB_RED);
+    }
+    // FN1 Layer
+    if (layer_state_is(WIN_FN1) || layer_state_is(MAC_FN1)) {
+        // Reset LEDs
+        rgb_matrix_set_color_all(0, 0, 0);
+
+        for(uint8_t i = 0; i < 14+1; ++i) {
+            rgb_matrix_set_color(i, RGB_CYAN);
+        }
+        rgb_matrix_set_color(25, RGB_CYAN);
+        rgb_matrix_set_color(26, RGB_CYAN);
+        rgb_matrix_set_color(27, RGB_CYAN);
+        rgb_matrix_set_color(62, RGB_CYAN);
+    }
+}
+#endif
+
 void keyboard_post_init_user(void) {
+    #ifdef RGB_MATRIX_ENABLE
+    rgblight_enable_noeeprom(); // enable RGB without saving
+    rgblight_sethsv_noeeprom(HSV_ORANGE);
+    rgblight_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+    #endif
     // Customise these values to desired behaviour
     // debug_enable=true;
     // debug_matrix=true;
     // debug_keyboard=true;
     // debug_mouse=true;
 }
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
