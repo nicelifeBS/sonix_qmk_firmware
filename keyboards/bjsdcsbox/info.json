@@ -1,0 +1,41 @@
+{
+    "manufacturer": "BJ's DCS Box",
+    "keyboard_name": "bjsdcsbox",
+    "maintainer": "nicelife_bs",
+    "bootloader": "atmel-dfu",
+    "diode_direction": "COL2ROW",
+    "features": {
+        "bootmagic": true,
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": true
+    },
+    "matrix_pins": {
+        "cols": ["E6", "B4", "B5", "B1"],
+        "rows": ["B6"]
+    },
+    "processor": "atmega32u4",
+    "url": "",
+    "usb": {
+        "device_version": "1.0.0",
+        "pid": "0x0000",
+        "vid": "0xFEED"
+    },
+    "encoder": {
+        "rotary": [
+            {"pin_a": "B2", "pin_b": "B3"}
+        ]
+    },
+    "layouts": {
+        "LAYOUT_ortho_4x1": {
+            "layout": [
+                {"matrix": [0, 0], "x": 0, "y": 0},
+                {"matrix": [0, 1], "x": 1, "y": 0},
+                {"matrix": [0, 2], "x": 2, "y": 0},
+                {"matrix": [0, 3], "x": 3, "y": 0}
+            ]
+        }
+    }
+}
