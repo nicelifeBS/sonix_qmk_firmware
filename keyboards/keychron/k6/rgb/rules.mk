@@ -22,6 +22,7 @@ WAIT_FOR_USB = yes
 CUSTOM_MATRIX = yes
 DIP_SWITCH_ENABLE = yes
 KEYBOARD_SHARED_EP = yes
+NO_USB_STARTUP_CHECK = yes
 
 # Custom RGB matrix handling
 RGB_MATRIX_ENABLE = yes
